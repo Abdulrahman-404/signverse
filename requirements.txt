@@ -1,0 +1,16 @@
+Flask>=3.0.0
+numpy>=1.21.0
+pandas>=1.3.0
+opencv-contrib-python>=4.5.0
+yt-dlp>=2023.0
+openai-whisper>=20231117
+moviepy>=1.0.3
+Pillow>=9.0.0
+arabic-reshaper>=2.1.0
+python-bidi>=0.4.2
+imageio-ffmpeg>=0.4.0
+
+# extract_keypoints.py / convert_karsl.py only — requires Python <=3.11.
+# mediapipe's legacy `solutions` (Holistic) API is not shipped for newer
+# Python builds; run these scripts from the .venv311 virtualenv.
+mediapipe==0.10.14
