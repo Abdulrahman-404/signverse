@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.venv311/
+venv/
+
+# Third-party binaries
+ffmpeg/
+
+# Output artifacts
+translation_output_*.mp4
+translation_output_*.sigml
+transcription_*.txt
+temp_*
+clean_audio.wav
+temp_ffmpeg/
+web_output/
+test_output/
+
+# Dataset (large binary files)
+Dataset/Labels/
+Dataset/final_manifest.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store

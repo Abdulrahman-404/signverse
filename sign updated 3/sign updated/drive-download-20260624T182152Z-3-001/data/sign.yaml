@@ -1,0 +1,11 @@
+
+# Train/val sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt
+
+train: data/train.txt  # train images (relative to 'path')
+val: data/val.txt  # val images (relative to 'path')
+
+# Classes
+nc: 32  # number of classes
+names: ['ain', 'al', 'aleff','bb','dal','dha','dhad','fa','gaaf','ghain','ha','haa','jeem','kaaf','khaa','la','laam',
+        'meem','nun','ra','saad','seen','sheen','ta','taa','thaa','thal','toot','waw','ya','yaa','zay'] # class names
+

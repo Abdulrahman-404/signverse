@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مترجم لغة الإشارة العربية</title>
+<meta name="description" content="تحويل النص العربي إلى لغة إشارة متحركة، باستخدام MediaPipe وSiGML">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="header">
+  <h1>مترجم لغة الإشارة</h1>
+  <p class="subtitle">تحويل النص والصوت والفيديو العربي إلى لغة إشارة متحركة بالذكاء الاصطناعي</p>
+  <div class="badge-row">
+    <span class="badge">Whisper STT</span>
+    <span class="badge">MediaPipe Keypoints</span>
+    <span class="badge">SiGML</span>
+    <span class="badge">Arabic Sign Language</span>
+  </div>
+</div>
+
+<div class="main-container">
+
+  <!-- ── Left column: input ─────────────────────────────── -->
+  <div class="left-column">
+    <div class="card">
+      <div class="section-title">🎛️ المُدخَل</div>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-mode="text">✏️ نص</button>
+        <button type="button" class="tab" data-mode="audio">🎙️ صوت / فيديو</button>
+      </div>
+
+      <form id="translate-form">
+        <div class="input-group" data-mode-group="text">
+          <label for="text-input">أدخل نصاً عربياً مباشرة</label>
+          <textarea name="text" id="text-input" rows="4"
+                    placeholder="مثال: مرحبا اب ام قلب سيارة"></textarea>
+        </div>
+
+        <div class="input-group hidden" data-mode-group="audio">
+          <label for="audio-input">📁 رفع ملف صوتي أو مرئي</label>
+          <input type="file" name="audio" id="audio-input"
+                 accept=".wav,.mp3,.ogg,.webm,.m4a,.flac,.aac,.opus,.mp4,.mov,.mkv,.avi,audio/*,video/*">
+          <p id="file-selected" class="file-selected hidden"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit-btn">⚡ ترجم إلى لغة الإشارة</button>
+      </form>
+
+      <div id="status-bar" class="status-bar"></div>
+    </div>
+  </div>
+
+  <!-- ── Right column: results ──────────────────────────── -->
+  <div class="right-column">
+
+    <div class="card">
+      <div class="section-title">🎬 فيديو لغة الإشارة</div>
+      <div id="video-wrapper">
+        <div id="video-placeholder">
+          <span>🤟</span>
+          أدخل نصاً أو صوتاً أو فيديو، ثم اضغط «ترجم» لعرض الإشارة هنا
+        </div>
+        <canvas id="avatar-canvas" class="hidden"></canvas>
+        <div id="avatar-status" class="avatar-status hidden"></div>
+      </div>
+      <div class="download-row">
+        <a id="sigml-link" class="btn btn-accent btn-sm hidden" download>⬇ تنزيل ملف SiGML</a>
+        <a id="video-link" class="btn btn-accent btn-sm hidden" download>⬇ تنزيل الفيديو</a>
+      </div>
+    </div>
+
+    <div class="card hidden" id="transcript-block">
+      <div class="top-bar">
+        <div class="section-title" style="margin-bottom:0">📝 النص المُتعرَّف عليه</div>
+      </div>
+      <p id="transcript-text" class="output-text"></p>
+    </div>
+
+    <div class="card hidden" id="results-details">
+      <div class="section-title">📊 التفاصيل</div>
+      <p id="clean-text" class="output-text"></p>
+      <p id="stats-text" class="stats-text"></p>
+      <div id="warnings-block"></div>
+    </div>
+
+    <div class="card hidden" id="breakdown-block">
+      <div class="section-title">🔤 تفصيل الكلمات</div>
+      <div id="breakdown"></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="{{ url_for('static', filename='avatar-viewer.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

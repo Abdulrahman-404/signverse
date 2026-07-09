@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3D Avatar Viewer built with Three.js">
+    <title>3D Avatar Viewer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-wrapper">
+
+    <header>
+        <div class="header-badge">ArSL · SiGML Keyframe · Three.js</div>
+        <h1>Sign Language Avatar</h1>
+        <p>Real keyframe-driven avatar — Arabic Sign Language from <code>sign.sigml</code></p>
+    </header>
+
+    <main class="glass-panel">
+        <section class="avatar-section">
+            <canvas id="avatar-canvas"></canvas>
+            <div class="avatar-status" id="avatar-status">Loading…</div>
+        </section>
+
+        <section class="controls-section">
+            <div class="control-block">
+                <label for="sign-select">Select Sign (Arabic)</label>
+                <select id="sign-select">
+                    <option value="">— Loading signs… —</option>
+                </select>
+            </div>
+
+            <div class="control-block">
+                <label>
+                    Frame
+                    <span id="frame-counter" class="frame-counter">0 / 0</span>
+                </label>
+                <input type="range" id="frame-scrubber" min="0" max="0" value="0" step="1">
+            </div>
+
+            <div class="control-block speed-row">
+                <label for="speed-select">Playback Speed</label>
+                <select id="speed-select">
+                    <option value="0.25">0.25×</option>
+                    <option value="0.5">0.5×</option>
+                    <option value="1" selected>1×</option>
+                    <option value="1.5">1.5×</option>
+                    <option value="2">2×</option>
+                </select>
+            </div>
+
+            <div class="action-bar">
+                <button id="play-btn" class="btn-primary">
+                    <svg id="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                    <span id="play-label">Play</span>
+                </button>
+                <button id="prev-btn" class="btn-secondary">&#9664; Prev</button>
+                <button id="next-btn" class="btn-secondary">Next &#9654;</button>
+            </div>
+
+            <div class="sign-log" id="sign-info">
+                <span class="log-label">Sign Info</span>
+                <div id="sign-details" class="sign-details">Loading…</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with Python Flask · Three.js</p>
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="{{ url_for('static', filename='js/avatar.js') }}"></script>
+</body>
+</html>
